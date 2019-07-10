@@ -34,8 +34,8 @@
             </button>
         </div>
     </ion-item>
-    <ion-item *ngIf="showAll && course.progress != null && course.progress >= 0 && course.completionusertracked !== false">
+    <!-- <ion-item *ngIf="showAll && course.progress != null && course.progress >= 0 && course.completionusertracked !== false">
         <core-progress-bar [progress]="course.progress"></core-progress-bar>
-    </ion-item>
+    </ion-item> -->
     <ng-content></ng-content>
 </ion-card>

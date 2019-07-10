@@ -1,4 +1,4 @@
-<ion-item-divider>
+<!-- <ion-item-divider>
     <h2>{{ 'addon.block_recentlyaccessedcourses.pluginname' | translate }}</h2>
     <div *ngIf="downloadEnabled && courses && courses.length > 1" class="core-button-spinner" item-end>
         <button *ngIf="prefetchCoursesData.icon && prefetchCoursesData.icon != 'spinner'" ion-button icon-only clear color="dark" (click)="prefetchCourses()">
@@ -10,7 +10,7 @@
 </ion-item-divider>
 <core-loading [hideUntil]="loaded" class="core-loading-center">
     <core-empty-box *ngIf="courses.length == 0" image="assets/img/icons/courses.svg" [message]="'addon.block_recentlyaccessedcourses.nocourses' | translate"></core-empty-box>
-    <!-- List of courses. -->
+    List of courses.
     <div class="safe-area-page">
          <div class="core-horizontal-scroll">
             <ng-container *ngFor="let course of courses">
@@ -18,4 +18,4 @@
             </ng-container>
         </div>
     </div>
-</core-loading>
+</core-loading> -->

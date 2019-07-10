@@ -40,10 +40,13 @@ export class AddonBlockTimelineHandler extends CoreBlockBaseHandler {
      * @return {boolean} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {
+        /**
         return this.timelineProvider.isAvailable().then((enabled) => {
             return enabled && (this.sitesProvider.getCurrentSite().isVersionGreaterEqualThan('3.6') ||
                 !this.coursesProvider.isMyCoursesDisabledInSite());
         });
+        */
+        return false;
     }
 
     /**

@@ -27,9 +27,9 @@
                 <div *ngIf="course.imageThumb" class="core-course-thumb">
                     <img [src]="course.imageThumb" core-external-content alt=""/>
                 </div>
-                <ion-item class="core-course-progress" *ngIf="selectedSection && selectedSection.id == allSectionsId && course.progress != null && course.progress >= 0 && course.completionusertracked !== false">
+                <!-- <ion-item class="core-course-progress" *ngIf="selectedSection && selectedSection.id == allSectionsId && course.progress != null && course.progress >= 0 && course.completionusertracked !== false">
                     <core-progress-bar [progress]="course.progress"></core-progress-bar>
-                </ion-item>
+                </ion-item> -->
             </ion-list>
         </core-dynamic-component>
 
