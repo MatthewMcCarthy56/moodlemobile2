@@ -3,14 +3,15 @@
         <ion-title><core-format-text [text]="siteName"></core-format-text></ion-title>
 
         <ion-buttons end>
+            <!--
             <button *ngIf="searchEnabled" ion-button icon-only (click)="openSearch()" [attr.aria-label]="'core.courses.searchcourses' | translate">
                 <ion-icon name="search"></ion-icon>
-            </button>
+            </button> -->
             <core-context-menu>
-                <!-- Action for dashboard and site home. -->
+                <!-- Action for dashboard and site home.
                 <core-context-menu-item *ngIf="(siteHomeEnabled || dashboardEnabled) && (downloadCourseEnabled || downloadCoursesEnabled)" [priority]="1000" [content]="'core.settings.showdownloadoptions' | translate" (action)="toggleDownload()" [iconAction]="downloadEnabledIcon"></core-context-menu-item>
 
-                <!-- Actions when both site home and dashboard are disabled. -->
+                Actions when both site home and dashboard are disabled. -->
                 <core-context-menu-item *ngIf="!siteHomeEnabled && !dashboardEnabled && mcComponent && mcComponent.downloadAllCoursesEnabled && mcComponent.courses && mcComponent.courses.length >= 2" [priority]="800" [content]="'core.courses.downloadcourses' | translate" (action)="mcComponent.prefetchCourses()" [iconAction]="mcComponent.prefetchCoursesData.icon" [closeOnClick]="false" [badge]="mcComponent.prefetchCoursesData.badge"></core-context-menu-item>
                 <core-context-menu-item *ngIf="!siteHomeEnabled && !dashboardEnabled && mcComponent && mcComponent.courses && mcComponent.courses.length > 5" [priority]="700" [content]="'core.courses.filtermycourses' | translate" (action)="mcComponent.switchFilter()" [iconAction]="'funnel'"></core-context-menu-item>
             </core-context-menu>
@@ -20,6 +21,7 @@
 <ion-content>
     <core-tabs [selectedIndex]="firstSelectedTab" [hideUntil]="tabsReady">
         <!-- Site home tab. -->
+        <!--
         <core-tab [show]="siteHomeEnabled" [title]="'core.sitehome.sitehome' | translate">
             <ng-template>
                 <ion-content>
@@ -31,7 +33,7 @@
             </ng-template>
         </core-tab>
 
-        <!-- Dashboard tab. -->
+        Dashboard tab. -->
         <core-tab [show]="dashboardEnabled" [title]="'core.courses.mymoodle' | translate">
             <ng-template>
                 <ion-content>
