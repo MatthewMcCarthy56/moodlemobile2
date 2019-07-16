@@ -33,9 +33,13 @@ export class AddonCompetencyMainMenuHandler implements CoreMainMenuHandler  {
      */
     isEnabled(): boolean | Promise<boolean> {
         // Check the user has at least one learn plan available.
+        /*
         return this.competencyProvider.getLearningPlans().then((plans) => {
             return plans.length > 0;
         });
+        */
+
+        return false;
     }
 
     /**
