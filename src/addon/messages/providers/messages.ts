@@ -1949,8 +1949,8 @@ export class AddonMessagesProvider {
      * @since  3.2
      */
     isMessagePreferencesEnabled(): boolean {
-        return false;
-        //return this.sitesProvider.wsAvailableInCurrentSite('core_message_get_user_message_preferences');
+        //return false;
+        return this.sitesProvider.wsAvailableInCurrentSite('core_message_get_user_message_preferences');
     }
 
     /**
@@ -2005,9 +2005,18 @@ export class AddonMessagesProvider {
      */
     isPluginEnabled(siteId?: string): Promise<any> {
         return this.sitesProvider.getSite(siteId).then((site) => {
-            //return site.canUseAdvancedFeature('messaging');
-            return false;
+            return site.canUseAdvancedFeature('messaging');
         });
+
+        /*
+        if (!this.appProvider.isMobile()) {
+            return this.sitesProvider.getSite(siteId).then((site) => {
+                return site.canUseAdvancedFeature('messaging');
+            });
+        } else {
+            return Promise.reject(null);
+        }
+        */
     }
 
     /**
@@ -2028,6 +2037,7 @@ export class AddonMessagesProvider {
      * @since 3.7
      */
     isSelfConversationEnabled(site?: CoreSite): boolean {
+
         site = site || this.sitesProvider.getCurrentSite();
 
         return site.wsAvailable('core_message_get_self_conversation');

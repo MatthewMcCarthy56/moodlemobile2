@@ -21,7 +21,7 @@
                 </p>
             </ion-item>
 
-            <ion-grid class="core-user-communication-handlers" *ngIf="(communicationHandlers && communicationHandlers.length) || isLoadingHandlers">
+            <!-- ion-grid class="core-user-communication-handlers" *ngIf="(communicationHandlers && communicationHandlers.length) || isLoadingHandlers">
                 <ion-row no-padding justify-content-between *ngIf="communicationHandlers && communicationHandlers.length">
                     <ion-col align-self-center *ngFor="let comHandler of communicationHandlers" text-center>
                         <a (click)="handlerClicked($event, comHandler)" [ngClass]="['core-user-profile-handler', comHandler.class]" title="{{comHandler.title | translate}}" tappable>
@@ -35,12 +35,70 @@
                         <ion-spinner></ion-spinner>
                     </ion-col>
                 </ion-row>
-            </ion-grid>
+            </ion-grid-->
 
-            <a ion-item text-wrap class="core-user-profile-handler" (click)="openUserDetails()" title="{{ 'core.user.details' | translate }}">
+            <!--a ion-item text-wrap class="core-user-profile-handler" (click)="openUserDetails()" title="{{ 'core.user.details' | translate }}">
                 <ion-icon name="person" item-start></ion-icon>
                 <h2>{{ 'core.user.details' | translate }}</h2>
-            </a>
+            </a-->
+
+            <ion-item-group *ngIf="hasContact">
+                <ion-item-divider>{{ 'core.user.contact' | translate}}</ion-item-divider>
+                <ion-item text-wrap *ngIf="user.email">
+                    <h2>{{ 'core.user.email' | translate }}</h2>
+                    <p><a href="mailto:{{user.email}}" core-link auto-login="no">
+                        <core-format-text [text]="user.email"></core-format-text>
+                    </a></p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.phone1">
+                    <h2>{{ 'core.user.phone1' | translate}}</h2>
+                    <p><a href="tel:{{user.phone1}}" core-link auto-login="no">
+                        <core-format-text [text]="user.phone1"></core-format-text>
+                    </a></p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.phone2">
+                    <h2>{{ 'core.user.phone2' | translate}}</h2>
+                    <p><a href="tel:{{user.phone2}}" core-link auto-login="no">
+                        <core-format-text [text]="user.phone2"></core-format-text>
+                    </a></p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.address">
+                    <h2>{{ 'core.user.address' | translate}}</h2>
+                    <p><a [href]="user.encodedAddress" core-link auto-login="no">
+                        <core-format-text [text]="user.address"></core-format-text>
+                    </a>
+                    </p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.city && !user.address">
+                    <h2>{{ 'core.user.city' | translate}}</h2>
+                    <p><core-format-text [text]="user.city"></core-format-text></p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.country && !user.address">
+                    <h2>{{ 'core.user.country' | translate}}</h2>
+                    <p><core-format-text [text]="user.country"></core-format-text></p>
+                </ion-item>
+            </ion-item-group>
+            <ion-item-group *ngIf="hasDetails">
+                <ion-item-divider>{{ 'core.userdetails' | translate}}</ion-item-divider>
+                <ion-item text-wrap *ngIf="user.url">
+                    <h2>{{ 'core.user.webpage' | translate}}</h2>
+                    <p><a href="{{user.url}}" core-link>
+                        <core-format-text [text]="user.url"></core-format-text>
+                    </a></p>
+                </ion-item>
+                <ion-item text-wrap *ngIf="user.interests">
+                    <h2>{{ 'core.user.interests' | translate}}</h2>
+                    <p><core-format-text [text]="user.interests"></core-format-text></p>
+                </ion-item>
+                <core-user-profile-field *ngFor="let field of user.customfields" [field]="field"></core-user-profile-field>
+            </ion-item-group>
+            <ion-item-group *ngIf="user.description">
+                <ion-item-divider>{{ 'core.user.description' | translate}}</ion-item-divider>
+                <ion-item text-wrap>
+                    <p><core-format-text [text]="user.description"></core-format-text></p>
+                </ion-item>
+            </ion-item-group>
+
 
             <ion-item text-center class="core-loading-handlers" *ngIf="isLoadingHandlers">
                 <ion-spinner></ion-spinner>
