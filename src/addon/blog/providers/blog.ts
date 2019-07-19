@@ -46,7 +46,7 @@ export class AddonBlogProvider {
     isPluginEnabled(siteId?: string): Promise<boolean> {
         return this.sitesProvider.getSite(siteId).then((site) => {
             return site.wsAvailable('core_blog_get_entries') &&
-                site.canUseAdvancedFeature('enableblogs');
+                site.canUseAdvancedFeature('enableblogs') && false;
         });
     }
 
