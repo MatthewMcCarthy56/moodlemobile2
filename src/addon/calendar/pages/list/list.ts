@@ -383,6 +383,10 @@ export class AddonCalendarListPage implements OnDestroy {
         this.navCtrl.push('AddonCalendarSettingsPage');
     }
 
+    openTestCalendar(): void {
+        this.navCtrl.push('AddonCalendarNewPage');
+    }
+
     /**
      * Navigate to a particular event.
      *

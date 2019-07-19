@@ -22,6 +22,9 @@ import { CoreLocalNotificationsProvider } from '@providers/local-notifications';
 import { CoreLoginHelperProvider } from '@core/login/providers/helper';
 import { CoreUpdateManagerProvider } from '@providers/update-manager';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+
 // List of providers (without handlers).
 export const ADDON_CALENDAR_PROVIDERS: any[] = [
     AddonCalendarProvider,
@@ -31,8 +34,7 @@ export const ADDON_CALENDAR_PROVIDERS: any[] = [
 @NgModule({
     declarations: [
     ],
-    imports: [
-    ],
+    imports: [BrowserAnimationsModule, CalendarModule.forRoot()],
     providers: [
         AddonCalendarProvider,
         AddonCalendarHelperProvider,
