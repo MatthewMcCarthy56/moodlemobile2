@@ -37,9 +37,7 @@ export class AddonCalendarNewPage {
 
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     body.forEach(day => {
-      day.badgeTotal = day.events.filter(
-        event => event.meta.incrementsBadgeTotal
-      ).length;
+      day.badgeTotal = 0;
     });
   }
 }
