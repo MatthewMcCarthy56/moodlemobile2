@@ -1159,11 +1159,10 @@ ion-app.platform-desktop {
   text-align: center;
   font-weight: bolder; }
 
-.cal-month-view .cal-cell-row:hover {
-  background-color: #fafafa; }
 
 .cal-month-view .cal-header .cal-cell {
-  padding: 5px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow: hidden;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
@@ -1172,10 +1171,11 @@ ion-app.platform-desktop {
 
 .cal-month-view .cal-cell-row .cal-cell:hover,
 .cal-month-view .cal-cell.cal-has-events.cal-open {
-  background-color: #ededed; }
+  background-color: #d0d0ff; }
 
 .cal-month-view .cal-days {
-  border: 1px solid #e1e1e1;
+  border: 1px solid #e8e8e8;
+  border-top: 1px solid #000;
   border-bottom: 0; }
 
 .cal-month-view .cal-cell-top {
@@ -1208,37 +1208,19 @@ ion-app.platform-desktop {
           align-items: stretch; }
 
 .cal-month-view .cal-day-cell {
-  min-height: 50px; }
+  min-height: 60px; }
 
-.cal-month-view .cal-day-cell:not(:last-child) {
-  border-right: 1px solid #e1e1e1; }
 
 .cal-month-view .cal-days .cal-cell-row {
-  border-bottom: 1px solid #e1e1e1; }
+  border-bottom: 1px solid #d0d0d0; }
 
-.cal-month-view .cal-day-badge {
-  margin-top: 18px;
-  margin-left: 10px;
-  background-color: #b94a48;
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: white;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  border-radius: 10px; }
 
 .cal-month-view .cal-day-number {
   font-size: 1.2em;
   font-weight: 400;
-  opacity: 0.5;
-  margin-top: 15px;
-  margin-right: 15px;
-  float: right;
+  opacity: 1;
+  margin-top: 10px;
+  display: inline-block;
   margin-bottom: 10px; }
 
 .cal-month-view .cal-events {
@@ -1249,6 +1231,8 @@ ion-app.platform-desktop {
       -ms-flex-align: end;
           align-items: flex-end;
   margin: 3px;
+  align-items: center;
+  justify-content: center;
   line-height: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1277,11 +1261,13 @@ ion-app.platform-desktop {
   opacity: 0.1;
   cursor: default; }
 
-.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
-  color: darkred; }
 
 .cal-month-view .cal-day-cell.cal-today {
-  background-color: #e8fde7; }
+  color: #0000ff; }
+
+.cal-month-view {
+    text-align: center;
+    background-color: #ffffff; }
 
 .cal-month-view .cal-day-cell.cal-drag-over {
   background-color: #e0e0e0 !important; }

@@ -1,11 +1,18 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter } from 'angular-calendar';
+import { CustomDateFormatter } from './customise-date-formats';
 
 @IonicPage({ segment: 'addon-calendar-new' })
 @Component({
     selector: 'page-addon-calendar-new',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: 'newcalendar.html'
+    templateUrl: 'newcalendar.html',
+    providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class AddonCalendarNewPage {
   viewDate: Date = new Date();
