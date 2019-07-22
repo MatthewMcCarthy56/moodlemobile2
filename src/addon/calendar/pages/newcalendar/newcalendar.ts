@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter } from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './customise-date-formats';
+import { CustomEventTitleFormatter } from './custom-event-title-formatter';
 
 @IonicPage({ segment: 'addon-calendar-new' })
 @Component({
@@ -11,6 +12,10 @@ import { CustomDateFormatter } from './customise-date-formats';
     {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
+  },
+  {
+      provide: CalendarEventTitleFormatter,
+      useClass: CustomEventTitleFormatter
     }
   ]
 })
