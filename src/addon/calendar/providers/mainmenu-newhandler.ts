@@ -21,7 +21,7 @@ import { CoreMainMenuHandler, CoreMainMenuHandlerData } from '@core/mainmenu/pro
 @Injectable()
 export class AddonNewCalendarMainMenuHandler implements CoreMainMenuHandler {
     name = 'AddonNewCalendar';
-    priority = 900;
+    priority = 1000;
 
     /**
      * Check if the handler is enabled on a site level.
@@ -39,7 +39,7 @@ export class AddonNewCalendarMainMenuHandler implements CoreMainMenuHandler {
      */
     getDisplayData(): CoreMainMenuHandlerData {
         return {
-            icon: 'cog',
+            icon: 'calendar',
             title: 'addon.newcalendar.newcalendar',
             page: 'AddonCalendarNewPage',
             class: 'addon-calendar-handler'
