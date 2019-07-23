@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, ViewChild, OnDestroy, Injector } from '@angular/core';
+import {Component, ViewChild, OnDestroy, Injector} from '@angular/core';
 import { IonicPage, NavParams, Content, NavController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreEventsProvider } from '@providers/events';
@@ -503,4 +503,9 @@ export class CoreCourseSectionPage implements OnDestroy {
         this.formatComponent && this.formatComponent.ionViewDidLeave();
         this.tabsComponent && this.tabsComponent.ionViewDidLeave();
     }
+
+    scrollToTop(): void {
+        this.content.scrollToTop();
+    }
+
 }

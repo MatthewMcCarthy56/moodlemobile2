@@ -22,10 +22,10 @@
                     <ion-refresher [enabled]="dataLoaded && displayRefresher" (ionRefresh)="doRefresh($event)">
                         <ion-refresher-content pullingText="{{ 'core.pulltorefresh' | translate }}"></ion-refresher-content>
                     </ion-refresher>
-
                     <core-loading [hideUntil]="dataLoaded">
                         <core-course-format [course]="course" [sections]="sections" [initialSectionId]="sectionId" [initialSectionNumber]="sectionNumber" [downloadEnabled]="downloadEnabled" [moduleId]="moduleId" (completionChanged)="onCompletionChange($event)"></core-course-format>
                     </core-loading>
+                    <button ion-button block (click)="scrollToTop()">{{ 'core.course.scrolltotop' | translate }}</button>
                 </ion-content>
             </ng-template>
         </core-tab>
