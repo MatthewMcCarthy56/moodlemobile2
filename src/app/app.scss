@@ -1184,6 +1184,20 @@ ion-app.platform-desktop {
       -ms-flex: 1;
           flex: 1; }
 
+//Custom header css, can get rid of
+
+.col-md-4 {
+    align-items: center;
+}
+
+.btn-primary {
+    color: #000;
+}
+
+.row.text-center {
+    align-items: center;
+}
+
 .cal-month-view .cal-cell-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1285,7 +1299,7 @@ ion-app.platform-desktop {
 
 .cal-month-view .cal-out-month .cal-day-badge,
 .cal-month-view .cal-out-month .cal-event {
-  opacity: 0.3; }
+  opacity: 0; }
 
 .cal-week-view .cal-day-headers {
   display: -webkit-box;

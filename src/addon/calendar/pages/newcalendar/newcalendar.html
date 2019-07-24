@@ -1,15 +1,34 @@
 <ion-header>
     <ion-navbar core-back-button>
-        <ion-title>{{ 'addon.calendar.calendar' | translate }}</ion-title>
+        <ion-title>Calendar</ion-title>
     </ion-navbar>
 </ion-header>
 
+<ion-content>
+    <mwl-demo-utils-calendar-header
+      [(view)]="view"
+      [(viewDate)]="viewDate">
+    </mwl-demo-utils-calendar-header>
 
-<ion-content>
-    <mwl-calendar-month-view
-      [viewDate]="viewDate"
-      [events]="events"
-      [activeDayIsOpen]="false"
-      (beforeViewRender)="beforeMonthViewRender($event)">
-    </mwl-calendar-month-view>
-<ion-content>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [activeDayIsOpen]="false"
+        (eventClicked)="eventClicked($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventClicked)="eventClicked($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventClicked)="eventClicked($event)">
+      </mwl-calendar-day-view>
+    </div>
+</ion-content>

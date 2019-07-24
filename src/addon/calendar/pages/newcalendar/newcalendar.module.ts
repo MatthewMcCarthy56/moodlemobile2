@@ -24,12 +24,17 @@ import { AddonCalendarNewPage } from './newcalendar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CalendarModule } from 'angular-calendar';
+import { CalendarHeaderComponent } from './calendar-header'
 
 @NgModule({
     declarations: [
         AddonCalendarNewPage,
+        CalendarHeaderComponent
     ],
     imports: [
+        CommonModule,
+        CalendarModule.forRoot(),
+        RouterModule.forChild([{ path: '', component: AddonCalendarNewPage }]),
         CoreComponentsModule,
         CoreDirectivesModule,
         CorePipesModule,
@@ -37,5 +42,6 @@ import { CalendarModule } from 'angular-calendar';
         TranslateModule.forChild(),
         CalendarModule
     ],
+    exports: [AddonCalendarNewPage, CalendarHeaderComponent]
 })
 export class AddonCalendarNewModule {}

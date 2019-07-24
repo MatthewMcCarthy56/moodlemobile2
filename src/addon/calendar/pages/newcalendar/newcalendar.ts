@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './customise-date-formats';
 import { CustomEventTitleFormatter } from './custom-event-title-formatter';
+import { CalendarHeaderComponent } from './calendar-header';
 
 @IonicPage({ segment: 'addon-calendar-new' })
 @Component({
@@ -20,6 +21,8 @@ import { CustomEventTitleFormatter } from './custom-event-title-formatter';
   ]
 })
 export class AddonCalendarNewPage {
+  view: string = 'month';
+
   viewDate: Date = new Date();
 
   events: Array<CalendarEvent<{ incrementsBadgeTotal: boolean }>> = [
