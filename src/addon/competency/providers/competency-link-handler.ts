@@ -67,8 +67,11 @@ export class AddonCompetencyCompetencyLinkHandler extends CoreContentLinksHandle
      */
     isEnabled(siteId: string, url: string, params: any, courseId?: number): boolean | Promise<boolean> {
         // Handler is disabled if all competency features are disabled.
+        /**
         return this.competencyProvider.allCompetenciesDisabled(siteId).then((disabled) => {
             return !disabled;
         });
+        */
+        return false;
     }
 }

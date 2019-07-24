@@ -1159,7 +1159,9 @@ export class CoreSitesProvider {
             promises.push(this.setSiteLoggedOut(siteId, true));
         }
 
+
         promises.push(this.appDB.deleteRecords(this.CURRENT_SITE_TABLE, { id: 1 }));
+        //console.log("logout deleting");
 
         return Promise.all(promises).finally(() => {
             // Due to DeepLinker, we need to remove the path from the URL, otherwise some pages are re-created when they shouldn't.

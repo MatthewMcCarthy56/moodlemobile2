@@ -47,7 +47,7 @@ export class AddonBadgesProvider {
                 return false;
             }
 
-            return true;
+            return false;
         });
     }
 

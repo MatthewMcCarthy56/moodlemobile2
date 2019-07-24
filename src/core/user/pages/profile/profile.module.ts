@@ -18,6 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CoreUserProfilePage } from './profile';
 import { CoreDirectivesModule } from '@directives/directives.module';
 import { CoreComponentsModule } from '@components/components.module';
+import {CoreUserComponentsModule} from "@core/user/components/components.module";
+import {CoreUserAboutPage} from "@core/user/pages/about/about";
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { CoreComponentsModule } from '@components/components.module';
         CoreDirectivesModule,
         CoreComponentsModule,
         IonicPageModule.forChild(CoreUserProfilePage),
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        CoreUserComponentsModule
     ],
 })
 export class CoreUserProfilePageModule {}
+

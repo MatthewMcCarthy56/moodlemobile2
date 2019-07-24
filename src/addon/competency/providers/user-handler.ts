@@ -50,7 +50,7 @@ export class AddonCompetencyUserHandler implements CoreUserProfileHandler {
      * @return {boolean|Promise<boolean>} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {
-        return true;
+        return false;
     }
 
     /**
@@ -63,6 +63,7 @@ export class AddonCompetencyUserHandler implements CoreUserProfileHandler {
      * @return  {boolean|Promise<boolean>}   Promise resolved with true if enabled, resolved with false otherwise.
      */
     isEnabledForUser(user: any, courseId: number, navOptions?: any, admOptions?: any): boolean | Promise<boolean> {
+        /*
         if (courseId) {
             const cacheKey = courseId + '.' + user.id;
 
@@ -95,6 +96,9 @@ export class AddonCompetencyUserHandler implements CoreUserProfileHandler {
                 return enabled;
             });
         }
+
+         */
+        return false;
     }
 
     /**

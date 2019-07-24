@@ -18,6 +18,7 @@ import { CoreEventsProvider } from '@providers/events';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreMainMenuDelegate, CoreMainMenuHandlerData } from '../../providers/delegate';
 import { CoreMainMenuProvider, CoreMainMenuCustomItem } from '../../providers/mainmenu';
+import { CoreLoginHelperProvider } from '../../../login/providers/helper';
 
 /**
  * Page that displays the list of main menu options that aren't in the tabs.
@@ -44,7 +45,7 @@ export class CoreMainMenuMorePage implements OnDestroy {
     protected updateSiteObserver;
 
     constructor(private menuDelegate: CoreMainMenuDelegate, private sitesProvider: CoreSitesProvider,
-            private navCtrl: NavController, private mainMenuProvider: CoreMainMenuProvider,
+            private navCtrl: NavController, private mainMenuProvider: CoreMainMenuProvider, private loginHelper: CoreLoginHelperProvider,
             eventsProvider: CoreEventsProvider) {
 
         this.langObserver = eventsProvider.on(CoreEventsProvider.LANGUAGE_CHANGED, this.loadSiteInfo.bind(this));
@@ -108,7 +109,8 @@ export class CoreMainMenuMorePage implements OnDestroy {
 
         this.siteInfo = currentSite.getInfo();
         this.siteName = currentSite.getSiteName();
-        this.logoutLabel = 'core.mainmenu.' + (config && config.tool_mobile_forcelogout == '1' ? 'logout' : 'changesite');
+        this.logoutLabel = 'core.mainmenu.' + 'logout';
+        //this.logoutLabel = 'core.mainmenu.' + (config && config.tool_mobile_forcelogout == '1' ? 'logout' : 'changesite');
         this.showWeb = !currentSite.isFeatureDisabled('CoreMainMenuDelegate_website');
         this.showHelp = !currentSite.isFeatureDisabled('CoreMainMenuDelegate_help');
 
@@ -152,4 +154,18 @@ export class CoreMainMenuMorePage implements OnDestroy {
     logout(): void {
         this.sitesProvider.logout();
     }
+
+    deleteSite(): void {
+        const site = this.sitesProvider.getCurrentSite();
+
+        this.sitesProvider.deleteSite(site.id).then(() => {
+            this.loginHelper.goToAddSite(true, true);
+
+        }).catch((error) => {
+            console.log("error deleting site")
+        });
+
+    }
+
+
 }

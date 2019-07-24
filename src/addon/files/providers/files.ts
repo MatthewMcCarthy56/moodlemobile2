@@ -306,7 +306,8 @@ export class AddonFilesProvider {
      * @return {boolean} True if enabled, false otherwise.
      */
     isPluginEnabled(): boolean {
-        return this.canViewPrivateFiles() || this.canViewSiteFiles() || this.canUploadFiles();
+        return false;
+        //return this.canViewPrivateFiles() || this.canViewSiteFiles() || this.canUploadFiles();
     }
 
     /**

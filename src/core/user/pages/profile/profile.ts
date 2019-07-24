@@ -25,6 +25,7 @@ import { CoreMimetypeUtilsProvider } from '@providers/utils/mimetype';
 import { CoreFileUploaderHelperProvider } from '@core/fileuploader/providers/helper';
 import { CoreUserDelegate, CoreUserProfileHandlerData } from '../../providers/user-delegate';
 import { CoreSplitViewComponent } from '@components/split-view/split-view';
+import {CoreTextUtilsProvider} from "@providers/utils/text";
 
 /**
  * Page that displays an user profile page.
@@ -37,13 +38,14 @@ import { CoreSplitViewComponent } from '@components/split-view/split-view';
 export class CoreUserProfilePage {
     protected courseId: number;
     protected userId: number;
+    protected siteId;
     protected site;
     protected obsProfileRefreshed: any;
     protected subscription;
 
     userLoaded = false;
     isLoadingHandlers = false;
-    user: any;
+    user: any = {};
     title: string;
     isDeleted = false;
     isEnrolled = true;
@@ -51,17 +53,21 @@ export class CoreUserProfilePage {
     actionHandlers: CoreUserProfileHandlerData[] = [];
     newPageHandlers: CoreUserProfileHandlerData[] = [];
     communicationHandlers: CoreUserProfileHandlerData[] = [];
+    hasContact = false;
+    hasDetails = false;
+
 
     constructor(navParams: NavParams, private userProvider: CoreUserProvider, private userHelper: CoreUserHelperProvider,
             private domUtils: CoreDomUtilsProvider, private translate: TranslateService, private eventsProvider: CoreEventsProvider,
             private coursesProvider: CoreCoursesProvider, private sitesProvider: CoreSitesProvider,
             private mimetypeUtils: CoreMimetypeUtilsProvider, private fileUploaderHelper: CoreFileUploaderHelperProvider,
-            private userDelegate: CoreUserDelegate, private navCtrl: NavController,
+            private userDelegate: CoreUserDelegate, private navCtrl: NavController, private textUtils: CoreTextUtilsProvider,
             @Optional() private svComponent: CoreSplitViewComponent) {
         this.userId = navParams.get('userId');
         this.courseId = navParams.get('courseId');
 
         this.site = this.sitesProvider.getCurrentSite();
+        this.siteId = this.sitesProvider.getCurrentSite().getId();
 
         // Allow to change the profile image only in the app profile page.
         this.canChangeProfilePicture =
@@ -98,12 +104,18 @@ export class CoreUserProfilePage {
      */
     fetchUser(): Promise<any> {
         return this.userProvider.getProfile(this.userId, this.courseId).then((user) => {
+            if (user.address) {
+                user.address = this.userHelper.formatAddress(user.address, user.city, user.country);
+                user.encodedAddress = this.textUtils.buildAddressURL(user.address);
+            }
 
-            user.address = this.userHelper.formatAddress('', user.city, user.country);
             user.roles = this.userHelper.formatRoleList(user.roles);
 
             this.user = user;
             this.title = user.fullname;
+
+            this.hasContact = user.email || user.phone1 || user.phone2 || user.city || user.country || user.address;
+            this.hasDetails = user.url || user.interests || (user.customfields && user.customfields.length > 0);
 
             // If there's already a subscription, unsubscribe because we'll get a new one.
             this.subscription && this.subscription.unsubscribe();
@@ -207,11 +219,12 @@ export class CoreUserProfilePage {
                     courseId: this.courseId,
                     userId: this.userId,
                     user: this.user
-                }, this.site.getId());
+                }, this.siteId);
                 refresher && refresher.complete();
             });
         });
     }
+
 
     /**
      * Open the page with the user details.
