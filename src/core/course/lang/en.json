@@ -27,6 +27,7 @@
     "overriddennotice": "Your final grade from this activity was manually adjusted.",
     "refreshcourse": "Refresh course",
     "sections": "Sections",
+    "scrolltotop": "Scroll To Top",
     "useactivityonbrowser": "You can still use it using your device's web browser.",
     "warningmanualcompletionmodified": "The manual completion of an activity was modified on the site.",
     "warningofflinemanualcompletiondeleted": "Some offline manual completion of course '{{name}}' has been deleted. {{error}}"
