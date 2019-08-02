@@ -14,20 +14,21 @@
       <mwl-calendar-month-view
         *ngSwitchCase="'month'"
         [viewDate]="viewDate"
-        [events]="events"
+        [events]="dots"
         [activeDayIsOpen]="false"
-        (eventClicked)="eventClicked($event)">
+        (eventClicked)="eventClicked($event)"
+        (beforeViewRender)="beforeMonthViewRender($event)">
       </mwl-calendar-month-view>
       <mwl-calendar-week-view
         *ngSwitchCase="'week'"
         [viewDate]="viewDate"
-        [events]="events"
+        [events]="dots"
         (eventClicked)="eventClicked($event)">
       </mwl-calendar-week-view>
       <mwl-calendar-day-view
         *ngSwitchCase="'day'"
         [viewDate]="viewDate"
-        [events]="events"
+        [events]="dots"
         (eventClicked)="eventClicked($event)">
       </mwl-calendar-day-view>
     </div>
