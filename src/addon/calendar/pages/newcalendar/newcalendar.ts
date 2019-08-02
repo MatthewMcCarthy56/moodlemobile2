@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, OnDestroy  } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, OnDestroy, EventEmitter  } from '@angular/core';
 import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './customise-date-formats';
 import { CustomEventTitleFormatter } from './custom-event-title-formatter';
@@ -64,7 +64,7 @@ export class AddonCalendarNewPage {
   view: string = 'month';
 
   viewDate: Date = new Date();
-  dots: Array<CalendarEvent> = [];
+  dots$: EventEmitter<Array<CalendarEvent>> = new EventEmitter();
 
 
   constructor(private translate: TranslateService, private calendarProvider: AddonCalendarProvider, navParams: NavParams,
@@ -347,7 +347,7 @@ export class AddonCalendarNewPage {
   }
 
   protected updateDots(): void {
-      this.dots = this.filteredEvents.map(function(dot) {
+      this.dots$.emit(this.filteredEvents.map(function(dot) {
           console.log(dot);
           return {
               title: dot.name,
@@ -357,6 +357,6 @@ export class AddonCalendarNewPage {
                 },
               start: new Date(dot.timestart * 1000)
           }
-      });
+      }));
   }
 }
