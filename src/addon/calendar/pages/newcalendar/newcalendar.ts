@@ -319,7 +319,7 @@ export class AddonCalendarNewPage {
       popover.onDidDismiss((course) => {
           if (course) {
               this.filter.course = course;
-              this.domUtils.scrollToTop(this.content);
+              //this.domUtils.scrollToTop(this.content);
 
               this.filteredEvents = this.getFilteredEvents();
               this.updateDots();
