@@ -129,6 +129,9 @@ import { AddonQbehaviourModule } from '@addon/qbehaviour/qbehaviour.module';
 import { AddonQtypeModule } from '@addon/qtype/qtype.module';
 import { AddonStorageManagerModule } from '@addon/storagemanager/storagemanager.module';
 
+// New CalendarModule
+import { CalendarModule } from 'angular-calendar';
+
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -173,6 +176,7 @@ export const CORE_PROVIDERS: any[] = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        CalendarModule.forRoot(),
         HttpClientModule, // HttpClient is used to make JSON requests. It fails for HEAD requests because there is no content.
         HttpModule,
         IonicModule.forRoot(MoodleMobileApp, {

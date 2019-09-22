@@ -15,23 +15,33 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { CoreUserProfilePage } from './profile';
-import { CoreDirectivesModule } from '@directives/directives.module';
 import { CoreComponentsModule } from '@components/components.module';
-import {CoreUserComponentsModule} from "@core/user/components/components.module";
-import {CoreUserAboutPage} from "@core/user/pages/about/about";
+import { CoreDirectivesModule } from '@directives/directives.module';
+import { CorePipesModule } from '@pipes/pipes.module';
+import { AddonCalendarNewPage } from './newcalendar';
+
+
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CalendarModule } from 'angular-calendar';
+import { CalendarHeaderComponent } from './calendar-header'
 
 @NgModule({
     declarations: [
-        CoreUserProfilePage,
+        AddonCalendarNewPage,
+        CalendarHeaderComponent
     ],
     imports: [
-        CoreDirectivesModule,
+        CommonModule,
+        CalendarModule.forRoot(),
+        RouterModule.forChild([{ path: '', component: AddonCalendarNewPage }]),
         CoreComponentsModule,
-        IonicPageModule.forChild(CoreUserProfilePage),
+        CoreDirectivesModule,
+        CorePipesModule,
+        IonicPageModule.forChild(AddonCalendarNewPage),
         TranslateModule.forChild(),
-        CoreUserComponentsModule
+        CalendarModule
     ],
+    exports: [AddonCalendarNewPage, CalendarHeaderComponent]
 })
-export class CoreUserProfilePageModule {}
-
+export class AddonCalendarNewModule {}

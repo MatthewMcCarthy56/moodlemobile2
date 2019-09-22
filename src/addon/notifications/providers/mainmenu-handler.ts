@@ -27,7 +27,7 @@ import { CorePushNotificationsDelegate } from '@core/pushnotifications/providers
 @Injectable()
 export class AddonNotificationsMainMenuHandler implements CoreMainMenuHandler {
     name = 'AddonNotifications';
-    priority = 700;
+    priority = 100;
 
     protected handler: CoreMainMenuHandlerData = {
         icon: 'notifications',
@@ -76,7 +76,7 @@ export class AddonNotificationsMainMenuHandler implements CoreMainMenuHandler {
      * @return {boolean} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {
-        return true;
+        return false;
     }
 
     /**

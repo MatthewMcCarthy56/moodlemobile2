@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar core-back-button>
+        <ion-title>Calendar</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <mwl-demo-utils-calendar-header
+      [(view)]="view"
+      [(viewDate)]="viewDate">
+    </mwl-demo-utils-calendar-header>
+
+    <ng-template #loading>
+        <div class="text-center">
+            <i class="fa fa-spin fa-spinner fa-5x"></i> <br />
+            Loading events...
+        </div>
+    </ng-template>
+
+    <div *ngIf="dots$ | async; else loading; let dots" [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="dots"
+        [activeDayIsOpen]="false"
+        (eventClicked)="eventClicked($event)"
+        (beforeViewRender)="beforeMonthViewRender($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="dots"
+        (eventClicked)="eventClicked($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="dots"
+        (eventClicked)="eventClicked($event)">
+      </mwl-calendar-day-view>
+    </div>
+</ion-content>

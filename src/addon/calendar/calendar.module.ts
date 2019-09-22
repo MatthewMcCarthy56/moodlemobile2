@@ -17,10 +17,17 @@ import { AddonCalendarProvider } from './providers/calendar';
 import { AddonCalendarHelperProvider } from './providers/helper';
 import { AddonCalendarMainMenuHandler } from './providers/mainmenu-handler';
 import { CoreMainMenuDelegate } from '@core/mainmenu/providers/delegate';
+
+//new imports
+import { AddonNewCalendarMainMenuHandler } from './providers/mainmenu-newhandler';
+
 import { CoreInitDelegate } from '@providers/init';
 import { CoreLocalNotificationsProvider } from '@providers/local-notifications';
 import { CoreLoginHelperProvider } from '@core/login/providers/helper';
 import { CoreUpdateManagerProvider } from '@providers/update-manager';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 // List of providers (without handlers).
 export const ADDON_CALENDAR_PROVIDERS: any[] = [
@@ -31,19 +38,20 @@ export const ADDON_CALENDAR_PROVIDERS: any[] = [
 @NgModule({
     declarations: [
     ],
-    imports: [
-    ],
+    imports: [BrowserAnimationsModule, CalendarModule.forRoot()],
     providers: [
         AddonCalendarProvider,
         AddonCalendarHelperProvider,
-        AddonCalendarMainMenuHandler
+        AddonCalendarMainMenuHandler,
+        AddonNewCalendarMainMenuHandler
     ]
 })
 export class AddonCalendarModule {
-    constructor(mainMenuDelegate: CoreMainMenuDelegate, calendarHandler: AddonCalendarMainMenuHandler,
+    constructor(mainMenuDelegate: CoreMainMenuDelegate, calendarHandler: AddonCalendarMainMenuHandler, newCalendarHandler: AddonNewCalendarMainMenuHandler,
             initDelegate: CoreInitDelegate, calendarProvider: AddonCalendarProvider, loginHelper: CoreLoginHelperProvider,
             localNotificationsProvider: CoreLocalNotificationsProvider, updateManager: CoreUpdateManagerProvider) {
         mainMenuDelegate.registerHandler(calendarHandler);
+        mainMenuDelegate.registerHandler(newCalendarHandler);
 
         initDelegate.ready().then(() => {
             calendarProvider.scheduleAllSitesEventsNotifications();
